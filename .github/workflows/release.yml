@@ -23,7 +23,7 @@ jobs:
         id: package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          ZIP="ward_${VERSION}.zip"
+          ZIP="lumen_${VERSION}.zip"
           (cd out && zip "../$ZIP" Jellyfin.Plugin.Lumen.dll)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
