@@ -1,6 +1,6 @@
 using MediaBrowser.Model.Plugins;
 
-namespace Jellyfin.Plugin.Ward.Configuration;
+namespace Jellyfin.Plugin.Lumen.Configuration;
 
 public sealed class PluginConfiguration : BasePluginConfiguration
 {

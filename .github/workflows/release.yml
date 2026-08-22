@@ -18,13 +18,13 @@ jobs:
         with:
           dotnet-version: "8.0.x"
       - name: Build
-        run: dotnet build Jellyfin.Plugin.Ward -c Release -o out
+        run: dotnet build Jellyfin.Plugin.Lumen -c Release -o out
       - name: Package
         id: package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           ZIP="ward_${VERSION}.zip"
-          (cd out && zip "../$ZIP" Jellyfin.Plugin.Ward.dll)
+          (cd out && zip "../$ZIP" Jellyfin.Plugin.Lumen.dll)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
           echo "checksum=$(md5sum "$ZIP" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
@@ -39,9 +39,9 @@ jobs:
           [
             {
               "guid": "793ea59c-eca9-4462-9496-73ad169b8300",
-              "name": "Ward",
-              "description": "Lets the Ward app find your Seerr automatically after a user signs in.",
-              "overview": "Points the Ward app at your Seerr.",
+              "name": "Lumen",
+              "description": "Lets the Lumen app find your Seerr automatically after a user signs in.",
+              "overview": "Points the Lumen app at your Seerr.",
               "owner": "joost",
               "category": "General",
               "versions": [

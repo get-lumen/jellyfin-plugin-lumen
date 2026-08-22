@@ -4,7 +4,7 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <Nullable>enable</Nullable>
-    <RootNamespace>Jellyfin.Plugin.Ward</RootNamespace>
+    <RootNamespace>Jellyfin.Plugin.Lumen</RootNamespace>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>

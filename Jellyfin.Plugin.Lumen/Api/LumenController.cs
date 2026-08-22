@@ -3,17 +3,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Jellyfin.Plugin.Ward.Api;
+namespace Jellyfin.Plugin.Lumen.Api;
 
 /// <summary>
-/// What the Ward app asks right after signing in. Any signed-in user may ask;
+/// What the Lumen app asks right after signing in. Any signed-in user may ask;
 /// the address is nothing they could not find on their own.
 /// </summary>
 [ApiController]
 [Authorize]
-[Route("Ward")]
+[Route("Lumen")]
 [Produces("application/json")]
-public sealed class WardController : ControllerBase
+public sealed class LumenController : ControllerBase
 {
     /// <summary>
     /// The Seerr address, or <c>null</c> when the admin left it empty.

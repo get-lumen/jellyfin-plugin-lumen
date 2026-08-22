@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Ward</title>
+    <title>Lumen</title>
 </head>
 <body>
-<div id="WardConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button">
+<div id="LumenConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button">
     <div data-role="content">
         <div class="content-primary">
-            <form id="WardConfigForm">
+            <form id="LumenConfigForm">
                 <div class="verticalSection">
-                    <h2 class="sectionTitle">Ward</h2>
-                    <p>The Ward app asks this server for the Seerr address right after a user signs in, so nobody has to type it.</p>
+                    <h2 class="sectionTitle">Lumen</h2>
+                    <p>The Lumen app asks this server for the Seerr address right after a user signs in, so nobody has to type it.</p>
                 </div>
                 <div class="inputContainer">
                     <input is="emby-input" id="SeerrUrl" type="url" label="Seerr address" placeholder="https://seerr.example.com" />
@@ -27,7 +27,7 @@
     <script type="text/javascript">
         (function () {
             var pluginId = '793ea59c-eca9-4462-9496-73ad169b8300';
-            var page = document.querySelector('#WardConfigPage');
+            var page = document.querySelector('#LumenConfigPage');
 
             page.addEventListener('pageshow', function () {
                 Dashboard.showLoadingMsg();
@@ -37,7 +37,7 @@
                 });
             });
 
-            page.querySelector('#WardConfigForm').addEventListener('submit', function (e) {
+            page.querySelector('#LumenConfigForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 Dashboard.showLoadingMsg();
                 ApiClient.getPluginConfiguration(pluginId).then(function (config) {
