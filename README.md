@@ -1,11 +1,11 @@
 # Jellyfin plugin: Ward
 
-Lets the [Ward](https://github.com/joost/Ward) app find your Seerr automatically. Set the Seerr address once in Jellyfin; every user who signs in to Ward gets requests without typing anything.
+Lets the [Ward](https://github.com/OrangeJuiced/Ward) app find your Seerr automatically. Set the Seerr address once in Jellyfin; every user who signs in to Ward gets requests without typing anything.
 
 ## Install
 
 1. Jellyfin dashboard → Plugins → Repositories → add
-   `https://joost.github.io/jellyfin-plugin-ward/manifest.json`
+   `https://orangejuiced.github.io/jellyfin-plugin-ward/manifest.json`
 2. Catalog → Ward → Install, restart Jellyfin.
 3. Plugins → Ward → fill in the Seerr address → Save.
 
