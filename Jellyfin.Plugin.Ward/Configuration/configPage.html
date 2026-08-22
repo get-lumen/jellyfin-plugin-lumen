@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ward</title>
+</head>
+<body>
+<div id="WardConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="WardConfigForm">
+                <div class="verticalSection">
+                    <h2 class="sectionTitle">Ward</h2>
+                    <p>The Ward app asks this server for the Seerr address right after a user signs in, so nobody has to type it.</p>
+                </div>
+                <div class="inputContainer">
+                    <input is="emby-input" id="SeerrUrl" type="url" label="Seerr address" placeholder="https://seerr.example.com" />
+                    <div class="fieldDescription">The address your users reach Seerr on. Leave empty if there is no Seerr.</div>
+                </div>
+                <div>
+                    <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var pluginId = '793ea59c-eca9-4462-9496-73ad169b8300';
+            var page = document.querySelector('#WardConfigPage');
+
+            page.addEventListener('pageshow', function () {
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(pluginId).then(function (config) {
+                    page.querySelector('#SeerrUrl').value = config.SeerrUrl || '';
+                    Dashboard.hideLoadingMsg();
+                });
+            });
+
+            page.querySelector('#WardConfigForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(pluginId).then(function (config) {
+                    config.SeerrUrl = page.querySelector('#SeerrUrl').value.trim();
+                    ApiClient.updatePluginConfiguration(pluginId, config).then(Dashboard.processPluginConfigurationUpdateResult);
+                });
+                return false;
+            });
+        })();
+    </script>
+</div>
+</body>
+</html>

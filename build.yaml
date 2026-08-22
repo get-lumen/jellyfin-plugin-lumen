@@ -1,0 +1,12 @@
+name: "Ward"
+guid: "793ea59c-eca9-4462-9496-73ad169b8300"
+version: "1.0.0.0"
+targetAbi: "10.10.0.0"
+framework: "net8.0"
+owner: "joost"
+overview: "Points the Ward app at your Seerr."
+description: "Lets the Ward app find your Seerr automatically after a user signs in to Jellyfin. Set the Seerr address once; every user gets requests without typing anything."
+category: "General"
+artifacts:
+  - "Jellyfin.Plugin.Ward.dll"
+changelog: "First release."

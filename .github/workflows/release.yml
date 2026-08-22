@@ -1,0 +1,63 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Build
+        run: dotnet build Jellyfin.Plugin.Ward -c Release -o out
+      - name: Package
+        id: package
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP="ward_${VERSION}.zip"
+          (cd out && zip "../$ZIP" Jellyfin.Plugin.Ward.dll)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "checksum=$(md5sum "$ZIP" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.package.outputs.zip }}
+      - name: Manifest
+        run: |
+          mkdir -p site
+          cat > site/manifest.json <<JSON
+          [
+            {
+              "guid": "793ea59c-eca9-4462-9496-73ad169b8300",
+              "name": "Ward",
+              "description": "Lets the Ward app find your Seerr automatically after a user signs in.",
+              "overview": "Points the Ward app at your Seerr.",
+              "owner": "joost",
+              "category": "General",
+              "versions": [
+                {
+                  "version": "${{ steps.package.outputs.version }}.0",
+                  "changelog": "See the GitHub release.",
+                  "targetAbi": "10.10.0.0",
+                  "sourceUrl": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ steps.package.outputs.zip }}",
+                  "checksum": "${{ steps.package.outputs.checksum }}",
+                  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                }
+              ]
+            }
+          ]
+          JSON
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
