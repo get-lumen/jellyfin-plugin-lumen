@@ -1,11 +1,11 @@
 # Jellyfin plugin: Lumen
 
-Lets the [Lumen](https://github.com/OrangeJuiced/Lumen) app find your Seerr automatically. Set the Seerr address once in Jellyfin; every user who signs in to Lumen gets requests without typing anything.
+Lets the [Lumen](https://github.com/candela-labs/Lumen) app find your Seerr automatically. Set the Seerr address once in Jellyfin; every user who signs in to Lumen gets requests without typing anything.
 
 ## Install
 
 1. Jellyfin dashboard → Plugins → Repositories → add
-   `https://orangejuiced.github.io/jellyfin-plugin-lumen/manifest.json`
+   `https://candela-labs.github.io/jellyfin-plugin-lumen/manifest.json`
 2. Catalog → Lumen → Install, restart Jellyfin.
 3. Plugins → Lumen → fill in the Seerr address → Save.
 
