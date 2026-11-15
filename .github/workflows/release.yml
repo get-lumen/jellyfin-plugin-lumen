@@ -24,7 +24,10 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           ZIP="lumen_${VERSION}.zip"
-          (cd out && zip "../$ZIP" Jellyfin.Plugin.Lumen.dll)
+          # Same bytes on every run, so a re-run can never leave the manifest
+          # pointing at a checksum the release asset no longer has.
+          touch -d @315532800 out/Jellyfin.Plugin.Lumen.dll
+          (cd out && zip -X "../$ZIP" Jellyfin.Plugin.Lumen.dll)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
           echo "checksum=$(md5sum "$ZIP" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
