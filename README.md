@@ -25,4 +25,4 @@ Lets the [Lumen](https://github.com/get-lumen/lumen) app find your Seerr automat
 dotnet build Jellyfin.Plugin.Lumen -c Release
 ```
 
-Requires Jellyfin 10.10 or newer. Releases are built by the `release` workflow, which also refreshes `manifest.json` on GitHub Pages.
+Requires Jellyfin 12 (.NET 10). Servers on 10.10 or 10.11 get 1.0.0 from the same repository. Releases are built by the `release` workflow, which also refreshes `manifest.json` on GitHub Pages.

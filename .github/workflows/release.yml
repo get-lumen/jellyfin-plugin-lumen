@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - name: Build
         run: dotnet build Jellyfin.Plugin.Lumen -c Release -o out
       - name: Package
@@ -48,10 +48,18 @@ jobs:
                 {
                   "version": "${{ steps.package.outputs.version }}.0",
                   "changelog": "See the GitHub release.",
-                  "targetAbi": "10.10.0.0",
+                  "targetAbi": "12.0.0.0",
                   "sourceUrl": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ steps.package.outputs.zip }}",
                   "checksum": "${{ steps.package.outputs.checksum }}",
                   "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                },
+                {
+                  "version": "1.0.0.0",
+                  "changelog": "Last release for Jellyfin 10.10 and 10.11.",
+                  "targetAbi": "10.10.0.0",
+                  "sourceUrl": "https://github.com/${{ github.repository }}/releases/download/v1.0.0/lumen_1.0.0.zip",
+                  "checksum": "9308e4de457daff6ea0e67e590d10516",
+                  "timestamp": "2026-08-22T11:51:07Z"
                 }
               ]
             }
